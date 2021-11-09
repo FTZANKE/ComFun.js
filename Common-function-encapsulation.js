@@ -1,4 +1,4 @@
-function rangenRandomNum(min, max) {
+function ragRandomNum(min, max) {
     // 生成指定范围随机数=>调用方法:randromNum(min,max)
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -13,9 +13,9 @@ function toStrKNum(n) {
     } else {
         let temp = '';
         let remainder = len % 3;
-        if (remainder > 0) { // 不是3的整数倍
+        if (remainder > 0) {
             return num.slice(0, remainder) + ',' + num.slice(remainder, len).match(/\d{3}/g).join(',') + temp;
-        } else { // 3的整数倍
+        } else {
             return num.slice(0, len).match(/\d{3}/g).join(',') + temp;
         }
     }
@@ -31,16 +31,20 @@ function arrSo(arr) {
     return arr;
 }
 
-function repArr(arr) { // 数组去重
+
+// *******************************************************************************************************
+function repArr(arr) { // 简单数组去重 不对外使用
     var arrJ = [...new Set(arr)];
     var obj = {};
     return arrJ.filter(function (item) {
         return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
     })
 }
+// *******************************************************************************************************
+
 
 function flatNum(arr, falsTruE) {
-    // 数组扁平化=>调用方法:flatNum(arr)    tip:形参是多维数组
+    // 数组扁平化=>调用方法:flatNum(arr)    tip:形参是多维数组且，
     // 第二个值为true时，可将返回数组去重后的结果(不能去除空对象);
     let result = [];
     for (let i = 0; i < arr.length; i++) {
