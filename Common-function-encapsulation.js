@@ -45,7 +45,7 @@ function repArr(arr) { // 简单数组去重 不对外使用
 
 function flatNum(arr, falsTruE) {
     // 数组扁平化=>调用方法:flatNum(arr)    tip:形参是多维数组且，
-    // 第二个值为true时，可将返回数组去重后的结果(不能去除空对象);
+    // 第二个值为true时，可将返回数组去重后的结果;
     let result = [];
     for (let i = 0; i < arr.length; i++) {
         if (Array.isArray(arr[i])) {
