@@ -100,7 +100,7 @@ function telFormat(tel) {
 
 
 function digitUppercase(n) {
-    // 手机号中间四位变成*=>调用方法:digitUppercase(n)    tip:形参是number类型 金额
+    // 金额转大写=>调用方法:digitUppercase(n)    tip:形参是number类型 金额
     const fraction = ['角', '分'];
     const digit = [
         '零', '壹', '贰', '叁', '肆',
@@ -163,14 +163,26 @@ function intToChinese(n) {
 }
 
 
-function nowTime() {
-    // 当前时间
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
-    const date = now.getDate() >= 10 ? now.getDate() : ('0' + now.getDate());
-    const hour = now.getHours() >= 10 ? now.getHours() : ('0' + now.getHours());
-    const miu = now.getMinutes() >= 10 ? now.getMinutes() : ('0' + now.getMinutes());
-    const sec = now.getSeconds() >= 10 ? now.getSeconds() : ('0' + now.getSeconds());
-    return +year + "年" + (month + 1) + "月" + date + "日 " + hour + ":" + miu + ":" + sec;
+function nowTime(time) {
+    // 调用方法=>nowTimw(time)      tip:形参可填可不填;填时间戳，不填的话是本地时间      
+    let fals = time;
+    if (typeof fals == 'number') {
+        const now = new Date(time);
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const date = now.getDate() >= 10 ? now.getDate() : ('0' + now.getDate());
+        const hour = now.getHours() >= 10 ? now.getHours() : ('0' + now.getHours());
+        const miu = now.getMinutes() >= 10 ? now.getMinutes() : ('0' + now.getMinutes());
+        const sec = now.getSeconds() >= 10 ? now.getSeconds() : ('0' + now.getSeconds());
+        return +year + "年" + (month + 1) + "月" + date + "日 " + hour + ":" + miu + ":" + sec;
+    } else if (typeof fals == 'undefined') {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const date = now.getDate() >= 10 ? now.getDate() : ('0' + now.getDate());
+        const hour = now.getHours() >= 10 ? now.getHours() : ('0' + now.getHours());
+        const miu = now.getMinutes() >= 10 ? now.getMinutes() : ('0' + now.getMinutes());
+        const sec = now.getSeconds() >= 10 ? now.getSeconds() : ('0' + now.getSeconds());
+        return +year + "年" + (month + 1) + "月" + date + "日 " + hour + ":" + miu + ":" + sec;
+    }
 }
