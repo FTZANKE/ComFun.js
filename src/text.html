@@ -9,25 +9,27 @@
 </head>
 
 <body>
-    <script src="./Common-function-encapsulation.js"></script>
-    <script>
-        var a = ['', '', {}, {}];
-        console.log(flatNum(a, true));
-        console.log(flatNum(a));
-        console.log(randomString(10));
-        var str = `ooskskddk`;
-        console.log(firstLetterUpper(str));
-        var tel = 17630147808;
-        console.log(telFormat(tel));
-        console.log(digitUppercase(tel));
-        console.log(intToChinese(tel));
+    <button>收藏</button>
 
-        let time = 1636787011;
-        console.log(nowTime(time));
-        console.log(nowTime(4098237518));
-        console.log(nowTime(4098237518000));
-        console.log(nowTime());
+    <script>
+        console.log(window);
+        function addFavorite(sURL, sTitle) {
+            try {
+                window.external.addFavorite(sURL, sTitle);
+            } catch (e) {
+                try {
+                    window.sidebar.addPanel(sTitle, sURL, "");
+                } catch (e) {
+                    alert("加入收藏失败，请使用Ctrl+D进行添加");
+                }
+            }
+        };
+        document.querySelector('button').onclick = function () {
+            addFavorite('http://localhost:8080/src/text.html','test');
+        }
     </script>
+
+    <script src="./Common-function-encapsulation.js"></script>
 </body>
 
 </html>
