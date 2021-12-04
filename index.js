@@ -4,7 +4,7 @@ NodeList.prototype.on = function (event, fn) {
     []['forEach'].call(this, function (el) {
         el.on(event, fn);
     });
-    return this;
+    return this; 
 };
 
 
