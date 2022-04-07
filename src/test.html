@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<script>
-			function sumCount(arr) {
-				let result = [];
-				for (let i = 0; i < arr.length; i++) {
-					if (Array.isArray(arr[i])) {
-						result = result.concat(sumCount(arr[i]));
-					} else {
-						result.push(arr[i]);
-					}
-				}
-				return result.reduce((prev, curr) => {
-					const value = Number(curr);
-					if (!isNaN(value)) {
-						return prev + curr;
-					} else {
-						return prev;
-					}
-				}, 0);
-			}
-			let arr = [1, 2, 3, [1, 2, [1, 2, [1,2,4],3]]]
-			console.log(sumCount(arr));
-		</script>
-	</body>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<script>
+			// function sumCount(arr) {
+			// 	let result = [];
+			// 	for (let i = 0; i < arr.length; i++) {
+			// 		if (Array.isArray(arr[i])) {
+			// 			result = result.concat(sumCount(arr[i]));
+			// 		} else {
+			// 			result.push(arr[i]);
+			// 		}
+			// 	}
+			// 	return result.reduce((prev, curr) => {
+			// 		const value = Number(curr);
+			// 		if (!isNaN(value)) {
+			// 			return prev + curr;
+			// 		} else {
+			// 			return prev;
+			// 		}
+			// 	}, 0);
+			// }
+			// let arr = [1, 2, 3, [1, 2, [1, 2, [1,2,4],3]]]
+			// console.log(sumCount(arr));
+
+			let arr =["2835","2841","2835","2835","2835","2835"]
+			console.log(Array.from(new Set(arr)));
+	</script>
+</body>
+
 </html>

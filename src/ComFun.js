@@ -36,7 +36,7 @@ function arrSo(arr) {
 function repArr(arr) { // 简单数组去重 不对外使用
 	var arrJ = [...new Set(arr)];
 	var obj = {};
-	return arrJ.filter(function(item) {
+	return arrJ.filter(function (item) {
 		return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
 	})
 }
@@ -164,21 +164,21 @@ function intToChinese(n) {
 
 
 // 当前时间=>函数末尾是调用方法
-Date.prototype.format = function(formatStr) {
+Date.prototype.format = function (formatStr) {
 	var str = formatStr;
 	var Week = ["日", "一", "二", "三", "四", "五", "六"];
 	str = str.replace(/yyyy|YYYY/, this.getFullYear());
 	str = str.replace(
 		/yy|YY/,
 		this.getYear() % 100 > 9 ?
-		(this.getYear() % 100).toString() :
-		"0" + (this.getYear() % 100)
+			(this.getYear() % 100).toString() :
+			"0" + (this.getYear() % 100)
 	);
 	str = str.replace(
 		/MM/,
 		this.getMonth() + 1 > 9 ?
-		(this.getMonth() + 1).toString() :
-		"0" + (this.getMonth() + 1)
+			(this.getMonth() + 1).toString() :
+			"0" + (this.getMonth() + 1)
 	);
 	str = str.replace(/M/g, this.getMonth() + 1);
 	str = str.replace(/w|W/g, Week[this.getDay()]);
@@ -195,21 +195,21 @@ Date.prototype.format = function(formatStr) {
 	str = str.replace(
 		/mm/,
 		this.getMinutes() > 9 ?
-		this.getMinutes().toString() :
-		"0" + this.getMinutes()
+			this.getMinutes().toString() :
+			"0" + this.getMinutes()
 	);
 	str = str.replace(/m/g, this.getMinutes());
 	str = str.replace(
 		/ss|SS/,
 		this.getSeconds() > 9 ?
-		this.getSeconds().toString() :
-		"0" + this.getSeconds()
+			this.getSeconds().toString() :
+			"0" + this.getSeconds()
 	);
 	str = str.replace(/s|S/g, this.getSeconds());
 	return str;
 };
 // 或
-Date.prototype.format = function(format) {
+Date.prototype.format = function (format) {
 	var o = {
 		"M+": this.getMonth() + 1, //month
 		"d+": this.getDate(), //day
@@ -246,18 +246,62 @@ console.log(new Date().format("yyyy-MM-dd hh:mm:ss"));
 function sumCount(arr) {
 	let result = [];
 	for (let i = 0; i < arr.length; i++) {
-		if (Array.isArray(arr[i])) {
-			result = result.concat(sumCount(arr[i]));
-		} else {
-			result.push(arr[i]);
-		}
+		if (Array.isArray(arr[i])) result = result.concat(sumCount(arr[i]));
+		else result.push(arr[i]);
 	}
 	return result.reduce((prev, curr) => {
 		const value = Number(curr);
-		if (!isNaN(value)) {
-			return prev + curr;
-		} else {
-			return prev;
-		}
+		if (!isNaN(value)) return prev + curr;
+		else return prev;
 	}, 0);
 }
+
+
+// 删除数组中包含某一项值得那一项
+const delArr = (arr, i, id) => {
+	arr.splice(arr.findIndex(item => item.i === id), 1)
+	// this.getProjectByPlanIdList.splice(this.getProjectByPlanIdList.findIndex(item => item.wageProjectId === row.wageProjectId), 1)
+}
+let arr = [
+	{ id: 1, value: '1' },
+	{ id: 2, value: '2' },
+]
+console.log('delArr(arr,1,id) :>> ', delArr(arr,1,id));
+
+
+//1、知道要删除项的下标值
+//index为删除项的下标值  arr为源数组
+var arrRemoveIndex = function(index,arr) {
+    if (!arr || arr.length == 0) return ""
+    arr.splice(index,1)
+    return arr
+}
+ 
+//2、知道要删除项的值
+//it 为要删除项的值  arr为源数组
+var arrRemove = function (it, arr) {
+    if (!arr || arr.length == 0) return ""
+    let flag = arr.indexOf(it)
+    if (flag > -1) {
+        arr.splice(flag, 1)
+        return arr
+    } else {
+        console.log("未查找到该元素")
+    }
+}
+ 
+//3、如果要删除项为对象，我们需要知道该对象属性中的唯一值（不会重复的值）
+//arr是源数组，attr是目标数组中的属性名称，value是要删除的属性名称对应的值
+var arrRemoveJson = function (arr, attr, value) {
+  if (!arr || arr.length == 0) return ""
+  let newArr = arr.filter(function (item, index) {
+    return item[attr] != value
+  })
+  return newArr
+}
+ 
+// let arr = ['aaa','bbb','ccc','ddd']
+// let arrJson = [{ id: 1 , name: 'cz'},{ id: 2 , name: 'mp'},{ id: 3 , name: 'xp'}];
+// let newArr1 = arrRemoveIndex(1,arr);  // ['aaa','ccc','ddd']
+// let newArr2 = arrRemove('bbb',arr);   // ['aaa','ccc','ddd']
+// let newArr3 = arrRemoveJson(arr,'id','2') //[{id:1,name:'cz'},{id:3,name:'xp'}]
