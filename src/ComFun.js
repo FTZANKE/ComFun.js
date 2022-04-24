@@ -266,40 +266,40 @@ let arr = [
 	{ id: 1, value: '1' },
 	{ id: 2, value: '2' },
 ]
-console.log('delArr(arr,1,id) :>> ', delArr(arr,1,id));
+console.log('delArr(arr,1,id) :>> ', delArr(arr, 1, id));
 
 
 //1、知道要删除项的下标值
 //index为删除项的下标值  arr为源数组
-var arrRemoveIndex = function(index,arr) {
-    if (!arr || arr.length == 0) return ""
-    arr.splice(index,1)
-    return arr
+var arrRemoveIndex = function (index, arr) {
+	if (!arr || arr.length == 0) return ""
+	arr.splice(index, 1)
+	return arr
 }
- 
+
 //2、知道要删除项的值
 //it 为要删除项的值  arr为源数组
 var arrRemove = function (it, arr) {
-    if (!arr || arr.length == 0) return ""
-    let flag = arr.indexOf(it)
-    if (flag > -1) {
-        arr.splice(flag, 1)
-        return arr
-    } else {
-        console.log("未查找到该元素")
-    }
+	if (!arr || arr.length == 0) return ""
+	let flag = arr.indexOf(it)
+	if (flag > -1) {
+		arr.splice(flag, 1)
+		return arr
+	} else {
+		console.log("未查找到该元素")
+	}
 }
- 
+
 //3、如果要删除项为对象，我们需要知道该对象属性中的唯一值（不会重复的值）
 //arr是源数组，attr是目标数组中的属性名称，value是要删除的属性名称对应的值
 var arrRemoveJson = function (arr, attr, value) {
-  if (!arr || arr.length == 0) return ""
-  let newArr = arr.filter(function (item, index) {
-    return item[attr] != value
-  })
-  return newArr
+	if (!arr || arr.length == 0) return ""
+	let newArr = arr.filter(function (item, index) {
+		return item[attr] != value
+	})
+	return newArr
 }
- 
+
 // let arr = ['aaa','bbb','ccc','ddd']
 // let arrJson = [{ id: 1 , name: 'cz'},{ id: 2 , name: 'mp'},{ id: 3 , name: 'xp'}];
 // let newArr1 = arrRemoveIndex(1,arr);  // ['aaa','ccc','ddd']
